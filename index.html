@@ -36,7 +36,7 @@
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="index.html">
-            <img src="images/logo.png" alt="" />
+            <img src="images/logo_new.png" alt="" />
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -190,7 +190,7 @@
                 </div>
                 <div class="col-md-6 img-container">
                   <div class="img-box">
-                    <img src="images/slider-img%20(2).png" alt="">
+                    <img src="images/slider-img%20(7).png" alt="">
                   </div>
                 </div>
               </div>
@@ -216,7 +216,7 @@
                 </div>
                 <div class="col-md-6 img-container">
                   <div class="img-box">
-                    <img src="images/slider-img.png" alt="">
+                    <img src="images/slider-img%20(8).png" alt="">
                   </div>
                 </div>
               </div>
@@ -238,7 +238,7 @@
                 </div>
                 <div class="col-md-6 img-container">
                   <div class="img-box">
-                    <img src="images/slider-img%20(2).png" alt="">
+                    <img src="images/slider-img%20(9).png" alt="">
                   </div>
                 </div>
               </div>
@@ -519,20 +519,18 @@
       <div class="row">
         <div class="col"/>
         <div class="col">
-          <form action="mailto:info.organicorbit@gmail.com"
-                method="POST"
-                enctype="multipart/form-data">
+          <form>
             <div>
-              <input type="text" placeholder="Name" />
+              <input type="text"  id="name"  name="name"  placeholder="Name" />
             </div>
             <div>
-              <input type="email" placeholder="Email" />
+              <input type="email" id="email" name="email" placeholder="Email" />
             </div>
             <div>
-              <input type="text" placeholder="Phone" />
+              <input type="text" id="phone" name="phone" placeholder="Phone" />
             </div>
             <div>
-              <input type="text" class="message-box" placeholder="Message" />
+              <input type="text" name="message" class="message-box" placeholder="Message" />
             </div>
             <div class="d-flex ">
               <button>
@@ -652,6 +650,14 @@
                 info.organicorbit@gmail.com
               </p>
             </div>
+            <div>
+              <div class="img-box">
+                <img src="images/id-card.png" width="18px" alt="">
+              </div>
+              <p>
+                KVK:
+              </p>
+            </div>
           </div>
         </div>
 
@@ -676,6 +682,78 @@
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+  </script>
+
+  <div id="loadingModal" class="cust_modal">
+    <div class="cust_modal-content">
+      <p>Sending your message....</p>
+    </div>
+  </div>
+
+  <div id="successModal" class="cust_modal">
+    <div class="cust_modal-content">
+      <span class="cust_close">&times;</span>
+      <p>Your message was sent successfully!</p>
+    </div>
+  </div>
+
+  <div id="failedModal" class="cust_modal">
+    <div class="cust_modal-content">
+      <span class="cust_closeFailed">&times;</span>
+      <p>Unfortunately your message was not sent! Please try again...!!</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init('xTBBUmE0EP3at8xfv');
+    })();
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const loadingModal = document.getElementById('loadingModal');
+      loadingModal.style.display = 'block';
+
+      emailjs.sendForm('service_g6lfc8i', 'organicorbit_customer_co', form)
+              .then((response) => {
+                // Show the modal when the email is sent successfully
+                loadingModal.style.display = 'none';
+                const modal = document.getElementById('successModal');
+                const span = document.getElementsByClassName('cust_close')[0];
+                modal.style.display = 'block';
+                document.body.classList.add('cust_modal-open');
+                span.onclick = function() {
+                  modal.style.display = 'none';
+                  document.body.classList.remove('cust_modal-open');
+                }
+                window.onclick = function(event) {
+                  if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.classList.remove('cust_modal-open');
+                  }
+                }
+                form.reset();
+              }, (error) => {
+                // Show the modal when the email is sent successfully
+                loadingModal.style.display = 'none';
+                const modal = document.getElementById('failedModal');
+                const span = document.getElementsByClassName('cust_closeFailed')[0];
+                modal.style.display = 'block';
+                document.body.classList.add('cust_modal-open');
+                span.onclick = function() {
+                  modal.style.display = 'none';
+                  document.body.classList.remove('cust_modal-open');
+                }
+                window.onclick = function(event) {
+                  if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.classList.remove('cust_modal-open');
+                  }
+                }
+              });
+    });
   </script>
   <script type="text/javascript">
     $(".owl-carousel").owlCarousel({
@@ -721,7 +799,6 @@
     })
   </script>
 
-</body>
 </body>
 
 </html>
