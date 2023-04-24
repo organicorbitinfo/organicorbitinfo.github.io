@@ -7,6 +7,64 @@
     right: 25%;
   }
 }
+/* Modal styles */
+.cust_modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.cust_modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cust_close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.cust_close:hover,
+.cust_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cust_closeFailed {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.cust_closeFailed:hover,
+.cust_closeFailed:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Make body unscrollable when modal is open */
+body.cust_modal-open {
+  overflow: hidden;
+}
 
 @media (max-width: 992px) {
   #navbarSupportedContent {
